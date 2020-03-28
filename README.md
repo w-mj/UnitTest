@@ -13,7 +13,8 @@ public:
     void testInt() {
         int aac = 1;
         int bbd = 3;
-        assertEqual(   1 + 1   ,   bbd);
+        assertEqual(aac, bbd);
+        assertEqual(aac, 1);
     }
     void testFloat() {
         float f1 = 3.14;
@@ -27,10 +28,12 @@ int main() {
     t.testAll();
 }
 ```
-程序输出:
+输出:
 ```
-Running TestSomething::testFloat...Pass!
+Running TestSomething::testFloat...Finish !
 Running TestSomething::testInt...
-TEST FAIL AT testInt:12:[ assertEqual(1 + 1 , bbd) ]
-1 + 1  expects 3 but gets 2
+TEST FAIL AT testInt:12:[ assertEqual(aac, bbd) ]
+`aac` expects `3` but gets `1`
+Finish !
+All test cases finished! 2/3 asserts passed.
 ```

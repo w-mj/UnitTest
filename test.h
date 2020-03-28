@@ -52,11 +52,17 @@ private:
         }
     }
 
+    int fail_cnt = 0;
+    int pass_cnt = 0;
     void fail(std::function<void(void)>fn) {
         using namespace std;
+        fail_cnt++;
         cerr << endl << "TEST FAIL AT " << func << ":" << line << ":[ " << assertName << "(" << args_s << ") ]"<< endl;
         fn();
-        exit(-1);
+    }
+
+    void pass() {
+        pass_cnt++;
     }
 
 protected:
@@ -84,8 +90,10 @@ protected:
         if (a != b) {
             fail([&](){
                 using namespace std;
-                cerr << args[0] << " expects " << b << " but gets " << a << endl;
+                cerr << "`" << args[0] << "` expects `" << b << "` but gets `" << a << "`" << endl;
             });
+        } else {
+            pass();
         }
     }
 
@@ -95,9 +103,9 @@ public:
         for (const auto& k : func_map) {
             cerr << "Running " << k.first << "...";
             k.second();
-            cerr << "Pass!" << endl;
+            cerr << "Finish !" << endl;
         }
-        cerr << "All test passed! OvO" << endl;
+        cerr << "All test cases finished! " << pass_cnt << "/" << pass_cnt + fail_cnt << " asserts passed." << endl;
     }
 };
 

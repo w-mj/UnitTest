@@ -9,7 +9,8 @@ public:
     void testInt() {
         int aac = 1;
         int bbd = 3;
-        assertEqual(   1 + 1   ,   bbd);
+        assertEqual(aac, bbd);
+        assertEqual(aac, 1);
     }
     void testFloat() {
         float f1 = 3.14;
