@@ -35,8 +35,13 @@ private:
         while (isspace(args_s[i]))
             i++;
         j = i;
+        int in_bracket = 0;
         while (true) {
-            if (args_s[j] != ',' && args_s[j] != 0) {
+            if ((in_bracket > 0) || (args_s[j] != ',' && args_s[j] != 0)) {
+                if (args_s[j] == '(')
+                    in_bracket++;
+                if (args_s[j] == ')')
+                    in_bracket--;
                 j++;
             } else {
                 if (i < j) {
